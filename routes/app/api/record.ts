@@ -31,6 +31,8 @@ export const handler: Handlers = {
     assert(data.message, "message is required")
     assert(data.account, "account is required")
 
+    console.log(data)
+
     addRecord(data.message, data.account);
 
     return new Response(JSON.stringify({"status": "ok"}));
