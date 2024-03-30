@@ -47,7 +47,6 @@ export async function extractMessage(message: string): Promise<RecordBase>{
     body: JSON.stringify(request)
   })
   const data = await response.json()
-  console.log(data)
   const result: string = data.choices[0].message.content
   return JSON.parse(result) as RecordBase
 }

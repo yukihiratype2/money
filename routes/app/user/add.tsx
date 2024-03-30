@@ -14,7 +14,7 @@ export const handler: Handlers = {
     db.query("INSERT INTO users (name) VALUES (?)", [name]);
 
     const headers = new Headers();
-    headers.set("location", "/user");
+    headers.set("location", "/app/user");
     return new Response(null, {
       status: 303, // See Other
       headers,

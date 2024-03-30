@@ -34,7 +34,7 @@ export const handler: Handlers = {
     ]);
 
     const headers = new Headers();
-    headers.set("location", "/account");
+    headers.set("location", "/app/account");
     return new Response(null, {
       status: 303, // See Other
       headers,
