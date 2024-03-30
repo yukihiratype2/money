@@ -9,7 +9,7 @@ VOLUME /config
 WORKDIR /app
 
 COPY . .
-# RUN deno cache main.ts
+RUN deno cache main.ts
 
 EXPOSE 8000
 
