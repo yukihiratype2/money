@@ -3,6 +3,7 @@ export type Account = {
   user_id: number,
   name: string,
   balance: number
+  note?: string
 }
 
 export type AccountWithUser = Account & {

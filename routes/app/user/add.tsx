@@ -1,4 +1,7 @@
 import { Handlers } from "$fresh/server.ts";
+import { Button } from "../../../components/Button.tsx";
+import { FormItem } from "../../../components/FormItem.tsx";
+import { Input } from "../../../components/Input.tsx";
 import { db } from "../../../utils/db.ts";
 
 export const handler: Handlers = {
@@ -25,9 +28,15 @@ export const handler: Handlers = {
 export default function AddUser() {
   return (
     <>
-      <form method="post">
-        <input type="text" name="name" value="" />
-        <button type="submit">Add User</button>
+      <form method="post" className={"m-4 flex flex-col space-y-2"}>
+        {/* <input type="text" name="name" value="" />
+        <button type="submit">Add User</button> */}
+        <FormItem label="User Name">
+          <Input type="text" name="name" value="" />
+        </FormItem>
+        <div>
+          <Button type="submit">Add User</Button>
+        </div>
       </form>
     </>
   );

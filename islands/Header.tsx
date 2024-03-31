@@ -23,7 +23,7 @@ export default function Header() {
   return (
     <div className="p-4 border-b">
       <div className="flex justify-between">
-        <div>Logo</div>
+        <div>钱钱去哪了</div>
         <Nav />
       </div>
     </div>

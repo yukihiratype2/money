@@ -16,13 +16,14 @@ db.query(`
     user_id INTEGER,
     name TEXT,
     balance REAL,
+    note TEXT,
     FOREIGN KEY(user_id) REFERENCES users(id)
   );
 `)
 db.query(`
   CREATE TABLE IF NOT EXISTS transactions (
     id INTEGER PRIMARY KEY AUTOINCREMENT,
-    direction TEXT CHECK(direction IN ('income', 'outcome')) NOT NULL,
+    direction TEXT CHECK(direction IN ('income', 'expense')) NOT NULL,
     type TEXT,
     time TEXT,
     create_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,

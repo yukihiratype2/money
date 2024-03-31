@@ -4,6 +4,7 @@ import { List, ListItem } from "../../../components/List.tsx";
 import { db } from "../../../utils/db.ts";
 import { FullRecord } from "../../../type/record.ts";
 import RecordItem from "../../../islands/RecordItem.tsx";
+import { RecordType } from "../../../const/record_type.ts";
 
 export const handler: Handlers<FullRecord[]> = {
   async GET(req, ctx) {
@@ -15,12 +16,13 @@ export const handler: Handlers<FullRecord[]> = {
       FROM transactions
       LEFT JOIN accounts ON accounts.id = transactions.account_id
       LEFT JOIN users ON users.id = accounts.user_id
+      ORDER BY transactions.create_at DESC
     `);
     const records: FullRecord[] = result.map((row: Row) => {
       return {
         id: row[0] as number,
-        direction: row[1] as "income" | "outcome",
-        type: row[2] as string,
+        direction: row[1] as "income" | "expense",
+        type: row[2] as RecordType,
         time: row[3] as string,
         platform: row[4] as "alipay" | "wechat" | "other",
         amount: row[5] as number,

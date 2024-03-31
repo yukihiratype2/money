@@ -81,14 +81,14 @@ export default function RecordItem(props: RecordItemProps) {
           <span>Balance:</span>
           <span>{record.value.balance}</span>
         </div>
-        <div className={"mr-2"}>{record.value.user_name}</div>
+        <div className={"mr-2"}>{record.value.account_name}</div>
       </div>
       <div
         className={clsx(
           "flex items-center p-1 text-lg rounded w-12 justify-center",
           {
             "bg-green-100 text-green-500": record.value.direction === "income",
-            "bg-red-100 text-red-500": record.value.direction === "outcome",
+            "bg-red-100 text-red-500": record.value.direction === "expense",
           }
         )}
       >

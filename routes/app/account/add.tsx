@@ -22,14 +22,16 @@ export const handler: Handlers = {
     const form = await req.formData();
     const accountName = form.get("name")?.toString();
     const balance = form.get("balance")?.toString();
+    const note = form.get("note")?.toString();
     const userId = form.get("user_id")?.toString();
     if (!accountName || !balance || !userId) {
       return new Response("Missing required fields", { status: 400 });
     }
 
-    db.query("INSERT INTO accounts (name, balance, user_id) VALUES (?, ?, ?)", [
+    db.query("INSERT INTO accounts (name, balance, note, user_id) VALUES (?, ?, ?, ?)", [
       accountName,
       balance,
+      note,
       userId,
     ]);
 
@@ -46,17 +48,17 @@ export default function AddAccount(props: PageProps<User[]>) {
   return (
     <>
       <div className={"flex flex-col items-stretch"}>
-        <header className={"p-4 mb-4 border-b"}>Add Account</header>
         <form method="post" className={"m-4 flex flex-col space-y-2"}>
           <FormItem label="Account Name">
             <Input type="text" name="name" value="" />
           </FormItem>
-          {/* <input type="number" name="balance" value="0" />
-        <input type="number" name="user_id" value="1" /> */}
+          <FormItem label="Note">
+            <Input type="text" name="note" value="" />
+          </FormItem>
           <FormItem label="Balance">
             <Input type="number" name="balance" value="0" />
           </FormItem>
-          <FormItem label="User ID">
+          <FormItem label="User">
             <Select name="user_id" >
               {props.data.map((user) => (
                 <option key={user.id} value={user.id}>{user.name}</option>
