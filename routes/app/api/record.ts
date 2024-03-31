@@ -21,6 +21,16 @@ async function addRecord(message: string, account: number) {
     UPDATE accounts SET balance =  ? WHERE id = ?`, [rec.balance, rec.account_id]);
 }
 
+ function updateRecord(id: number, updatedRecord: Partial<Rec>) {
+  let fieldsToUpdate = Object.keys(updatedRecord).map(key => `${key} = ?`).join(', ');
+  let valuesToUpdate = Object.values(updatedRecord);
+  valuesToUpdate.push(id);
+
+  db.query(`
+    UPDATE transactions SET ${fieldsToUpdate} WHERE id = ?
+  `, valuesToUpdate);
+}
+
 export const handler: Handlers = {
   async POST(req: Request, ctx: FreshContext) {
     const data: {
@@ -32,6 +42,19 @@ export const handler: Handlers = {
     assert(data.account, "account is required")
 
     addRecord(data.message, data.account);
+
+    return new Response(JSON.stringify({"status": "ok"}));
+  },
+  async PUT(req: Request, ctx: FreshContext) {
+    const data: {
+      id: number,
+      updatedRecord: Partial<Rec>
+    } = await req.json()
+
+    assert(data.id, "id is required")
+    assert(data.updatedRecord, "updatedRecord is required")
+
+    updateRecord(data.id, data.updatedRecord);
 
     return new Response(JSON.stringify({"status": "ok"}));
   },

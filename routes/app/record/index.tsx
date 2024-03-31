@@ -3,7 +3,7 @@ import { Row } from "https://deno.land/x/sqlite@v3.8/mod.ts";
 import { List, ListItem } from "../../../components/List.tsx";
 import { db } from "../../../utils/db.ts";
 import { FullRecord } from "../../../type/record.ts";
-import clsx from "npm:clsx";
+import RecordItem from "../../../islands/RecordItem.tsx";
 
 export const handler: Handlers<FullRecord[]> = {
   async GET(req, ctx) {
@@ -40,42 +40,9 @@ export default function RecordList(props: PageProps<FullRecord[]>) {
   return (
     <>
       <div className={"flex flex-col items-stretch"}>
-        <header className={"p-4 border-b mb-4"}>Records</header>
         <List className={"m-4"}>
           {props.data.map((record) => (
-            <ListItem key={record.id} className={"flex items-center space-x-2"}>
-              <div
-                className={clsx("flex items-center p-2 text-lg rounded", {
-                  "bg-green-100 text-green-500": record.direction === "income",
-                  "bg-red-100 text-red-500": record.direction === "outcome",
-                })}
-              >
-                <div className={""}>
-                  {record.direction === "income" ? "+" : "-"}
-                </div>
-                <div>{record.amount}</div>
-              </div>
-              <div className={"flex-1 flex items-center space-x-2"}>
-                <div className={"flex items-center"}>
-                  <div className={"mr-2"}>{record.platform}</div>
-                </div>
-                <div className="flex flex-col">
-                  <span>
-                    <span className="text-sm">类型:</span>
-                    {record.type}
-                  </span>
-                  <div className={"text-gray-500 text-xs"}>{record.time}</div>
-                </div>
-                <div className={"text-gray-500 mt-2"}>{record.note}</div>
-              </div>
-              <div className={"flex items-end flex-col"}>
-                <div className={"text-xs"}>
-                  <span>Balance:</span>
-                  <span>{record.balance}</span>
-                </div>
-                <div className={"mr-2"}>{record.user_name}</div>
-              </div>
-            </ListItem>
+            <RecordItem record={record} key={record.id}></RecordItem>
           ))}
         </List>
       </div>

@@ -4,11 +4,13 @@
 
 import * as $_404 from "./routes/_404.tsx";
 import * as $_app from "./routes/_app.tsx";
+import * as $app_layout from "./routes/app/_layout.tsx";
 import * as $app_middleware from "./routes/app/_middleware.ts";
 import * as $app_account_id_ from "./routes/app/account/[id].tsx";
 import * as $app_account_add from "./routes/app/account/add.tsx";
 import * as $app_account_index from "./routes/app/account/index.tsx";
 import * as $app_api_record from "./routes/app/api/record.ts";
+import * as $app_index from "./routes/app/index.tsx";
 import * as $app_record_id_ from "./routes/app/record/[id].tsx";
 import * as $app_record_index from "./routes/app/record/index.tsx";
 import * as $app_user_id_ from "./routes/app/user/[id].tsx";
@@ -16,17 +18,21 @@ import * as $app_user_add from "./routes/app/user/add.tsx";
 import * as $app_user_index from "./routes/app/user/index.tsx";
 import * as $index from "./routes/index.tsx";
 import * as $Counter from "./islands/Counter.tsx";
+import * as $Header from "./islands/Header.tsx";
+import * as $RecordItem from "./islands/RecordItem.tsx";
 import { type Manifest } from "$fresh/server.ts";
 
 const manifest = {
   routes: {
     "./routes/_404.tsx": $_404,
     "./routes/_app.tsx": $_app,
+    "./routes/app/_layout.tsx": $app_layout,
     "./routes/app/_middleware.ts": $app_middleware,
     "./routes/app/account/[id].tsx": $app_account_id_,
     "./routes/app/account/add.tsx": $app_account_add,
     "./routes/app/account/index.tsx": $app_account_index,
     "./routes/app/api/record.ts": $app_api_record,
+    "./routes/app/index.tsx": $app_index,
     "./routes/app/record/[id].tsx": $app_record_id_,
     "./routes/app/record/index.tsx": $app_record_index,
     "./routes/app/user/[id].tsx": $app_user_id_,
@@ -36,6 +42,8 @@ const manifest = {
   },
   islands: {
     "./islands/Counter.tsx": $Counter,
+    "./islands/Header.tsx": $Header,
+    "./islands/RecordItem.tsx": $RecordItem,
   },
   baseUrl: import.meta.url,
 } satisfies Manifest;

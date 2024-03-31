@@ -29,7 +29,6 @@ export default function AccountList(props: PageProps<AccountWithUser[]>) {
   return (
     <>
       <div className={"flex flex-col items-stretch"}>
-        <header className={"p-4 border-b mb-4"}>Account</header>
         <List className={"m-4"}>
           {props.data.map((account) => (
             <ListItem key={account.id} className={"flex items-center"}>

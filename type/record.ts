@@ -1,6 +1,8 @@
+import { RecordType } from "../const/record_type.ts";
+
 export type RecordBase = {
   direction: "income" | "outcome",
-  type: string,
+  type: RecordType,
   time: string,
   platform: "alipay" | "wechat" | "other",
   amount: number,

@@ -31,7 +31,6 @@ export default function UserList(props: PageProps<UserWithBalance[]>) {
   return (
     <>
       <div className={"flex flex-col items-stretch"}>
-        <header className={"p-4 border-b mb-4"}>User</header>
         <List className={"m-4"}>
           {props.data.map((user) => (
             <ListItem key={user.id} className={"flex"}>

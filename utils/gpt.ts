@@ -1,12 +1,12 @@
 import { RecordBase } from "../type/record.ts";
 
 const promot = `
-Extract transaction message into following JSON format, type should assumption based on the context.
+Extract transaction message into following JSON format, type should assumption based on the provided message.
 {
-  "direction": "income" | "outcome",
-  "type": "daily" | "invest" | "repay loan" | "transfer" | "transport" | "car" | "health" | "eat" | "pet" | "other",
+  "direction": "income" | "expense",
+  "type": "invest" | "repay_loan" | "transfer" | "transport" | "car" | "health" | "eat" | "pet" | "subscription" | "entertainment" | "other",
   "time": string,
-  "platform": "alipay" | "wechat" | "other"
+  "platform": "alipay" | "wechat" | .etc (note: 财富通 is wechat),
   "amount": number,
   "balance": number,
 }
