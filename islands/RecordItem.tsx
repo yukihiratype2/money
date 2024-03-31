@@ -72,7 +72,10 @@ export default function RecordItem(props: RecordItemProps) {
       />
       <div className={"flex-1 flex items-center space-x-2"}>
         <div className="flex flex-col">
-          <div className={"text-gray-500 text-xs"}>{record.value.time}</div>
+          <span className={""}>{record.value.time}</span>
+          <span className={"text-xs"}>
+          📍
+            {record.value.location}</span>
         </div>
         <div className={"text-gray-500 mt-2"}>{record.value.note}</div>
       </div>
@@ -81,7 +84,7 @@ export default function RecordItem(props: RecordItemProps) {
           <span>Balance:</span>
           <span>{record.value.balance}</span>
         </div>
-        <div className={"mr-2"}>{record.value.account_name}</div>
+        <div className={"text-sm"}>{record.value.account_name}</div>
       </div>
       <div
         className={clsx(

@@ -11,7 +11,7 @@ export const handler: Handlers<FullRecord[]> = {
     // query all records, join user and account
     const result = db.query(`
       SELECT
-        transactions.id, transactions.direction, transactions.type, transactions.time, transactions.platform, transactions.amount, transactions.balance, transactions.account_id, transactions.original_sms_content, transactions.note,
+        transactions.id, transactions.direction, transactions.type, transactions.time, transactions.platform, transactions.amount, transactions.balance, transactions.location, transactions.account_id, transactions.original_sms_content, transactions.note,
         accounts.name as account_name, users.name as user_name
       FROM transactions
       LEFT JOIN accounts ON accounts.id = transactions.account_id
@@ -27,11 +27,12 @@ export const handler: Handlers<FullRecord[]> = {
         platform: row[4] as "alipay" | "wechat" | "other",
         amount: row[5] as number,
         balance: row[6] as number,
-        account_id: row[7] as number,
-        original_sms_content: row[8] as string,
-        note: row[9] as string,
-        account_name: row[10] as string,
-        user_name: row[11] as string,
+        location: row[7] as string,
+        account_id: row[8] as number,
+        original_sms_content: row[9] as string,
+        note: row[10] as string,
+        account_name: row[11] as string,
+        user_name: row[12] as string,
       };
     });
     return await ctx.render(records);

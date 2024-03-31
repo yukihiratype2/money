@@ -5,6 +5,7 @@ export type RecordBase = {
   type: RecordType,
   time: string,
   platform: "alipay" | "wechat" | "other",
+  location: string,
   amount: number,
   balance: number
   note?: string

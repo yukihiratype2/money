@@ -31,8 +31,9 @@ db.query(`
     amount REAL NOT NULL,
     balance REAL,
     account_id INTEGER NOT NULL,
-    original_sms_content TEXT,
     note TEXT,
+    location TEXT,
+    original_sms_content TEXT,
     FOREIGN KEY(account_id) REFERENCES accounts(id)
   );
 `)
